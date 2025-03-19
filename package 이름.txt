@@ -1,0 +1,11 @@
+com.mybatis.member.controller  	: servlet파일들
+com.mybatis.member.vo		: java bean파일들
+com.mybatis.member.service		: DB의 실행결과 리턴
+com.mybatis.member.dao		: DB와 직접 연결
+
+com.mybatis.board.controller 	 	: servlet파일들
+com.mybatis.board.vo		: java bean파일들
+com.mybatis.board.service		: DB의 실행결과 리턴
+com.mybatis.board.dao		: DB와 직접 연결
+
+com.mybatis.common.template	: 마이바티스와 연결 DB의 sqlSession얻어오기	
