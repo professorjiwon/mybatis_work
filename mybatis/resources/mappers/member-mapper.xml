@@ -38,7 +38,7 @@
 	 	<result column="status" property="status"/>
 	 </resultMap>
 	 
-	 <select id="loginMember" resultMap="" parameterType="com.mybatis.member.vo.Member">
+	 <select id="loginMember" resultMap="memberResultSet" parameterType="com.mybatis.member.vo.Member">
 	 	select *
 	 	  from member
 	 	 where user_id = #{userId} and user_pwd = #{userPwd} and status = 'Y'

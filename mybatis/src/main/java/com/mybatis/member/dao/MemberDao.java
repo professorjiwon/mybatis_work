@@ -7,8 +7,11 @@ import com.mybatis.member.vo.Member;
 public class MemberDao {
 
 	public Member loginMember(SqlSession sqlSession, Member m) {
-		
-		return null;
+		/*
+		Member loginUser = sqlSession.selectOne("memberMapper.loginMember", m);
+		return loginUser;
+		*/
+		return sqlSession.selectOne("memberMapper.loginMember", m);
 	}
 
 }
