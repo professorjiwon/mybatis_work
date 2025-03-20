@@ -32,7 +32,7 @@
 	
 	<div class="login-area" align="right">
 		<!-- 로그인 전 -->
-		<form action="" method="post">
+		<form action="login.me" method="post">
 			<table>
 				<tr>
 					<td>아이디</td>
