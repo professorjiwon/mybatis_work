@@ -62,7 +62,7 @@
 					</tr>
 					<tr>
 						<td><a href="">마이페이지</a></td>
-						<td><a href="">로그아웃</a></td>
+						<td><a href="logout.me">로그아웃</a></td>
 					</tr>
 				</table>
 			</c:otherwise>
