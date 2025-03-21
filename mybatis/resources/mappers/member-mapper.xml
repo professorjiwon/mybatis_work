@@ -24,7 +24,7 @@
 		  	<result column="조회결과의 DB컬럼명" property="bean객체의 필드명"/>
 		  </resultMap>
 	 -->
-	 <resultMap type="com.mybatis.member.vo.Member" id="memberResultSet">
+	 <resultMap type="Member" id="memberResultSet">
 	 	<result column="USER_ID" property="userId"/>
 	 	<result column="user_pwd" property="userPwd"/>
 	 	<result column="user_name" property="userName"/>
@@ -38,7 +38,7 @@
 	 	<result column="status" property="status"/>
 	 </resultMap>
 	 
-	 <select id="loginMember" resultMap="memberResultSet" parameterType="com.mybatis.member.vo.Member">
+	 <select id="loginMember" resultMap="memberResultSet">
 	 	select *
 	 	  from member
 	 	 where user_id = #{userId} and user_pwd = #{userPwd} and status = 'Y'
@@ -49,9 +49,10 @@
 	 	  from member
 	 	 where user_id = #{userId} 
 	 </select>
+
+	 <insert id="insertMember">
+	 	insert into member 
+	 	values(#{userId}, #{userPwd}, #{userName}, #{email}, #{birthday}, #{gender}, #{phone}, #{address}, default, default, default)
+	 </insert>
+	 
 </mapper>
-
-
-
-
-

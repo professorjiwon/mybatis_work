@@ -94,7 +94,8 @@
 				<tr>
 					<td>&ensp; ADDRESS</td>
 					<td>
-						<input  name="address" size="40" id="addr" onclick="findAddr();">
+						<input  name="address" size="40" id="addr">
+						<!-- <input  name="address" size="40" id="addr" onclick="findAddr();"> -->
 					</td>
 				</tr>
 				<tr>

@@ -49,4 +49,24 @@
     <servlet-name>IdCheckServlet</servlet-name>
     <url-pattern>/idCheck.me</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>MemberInsertServlet</display-name>
+    <servlet-name>MemberInsertServlet</servlet-name>
+    <servlet-class>com.mybatis.member.controller.MemberInsertServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>MemberInsertServlet</servlet-name>
+    <url-pattern>/insert.me</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>BoardListServlet</display-name>
+    <servlet-name>BoardListServlet</servlet-name>
+    <servlet-class>com.mybatis.board.controller.BoardListServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>BoardListServlet</servlet-name>
+    <url-pattern>/list.bo</url-pattern>
+  </servlet-mapping>
 </web-app>
