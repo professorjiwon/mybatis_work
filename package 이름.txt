@@ -2,11 +2,15 @@
 jsp -> controller(Sevlet) -> service(interface, interface구현체) -> dao(xml호출용도) -> DB sql.xml(sql문)
 
 class 파일의 package
-com.mybatis.member.controller  	: servlet파일들
+com.mybatis.member.controller  			: servlet파일들
+			  .LoginServlet (mapping: login.me  method: post)
 com.mybatis.member.vo		: java bean파일들
 		      .Member
 com.mybatis.member.service		: DB의 실행결과 리턴
+			.MemberService(interface)
+			.MemberServiceImpl(class)	
 com.mybatis.member.dao		: DB와 직접 연결
+		       .MemberDao
 
 com.mybatis.board.controller 	 	: servlet파일들
 com.mybatis.board.vo		: java bean파일들
@@ -22,3 +26,6 @@ views/
 	board
 	member
 	common/menubar.jsp
+
+resources/mappers(일반폴더)
+             member-mapper.xml

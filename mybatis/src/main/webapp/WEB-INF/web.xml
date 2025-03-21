@@ -29,4 +29,24 @@
     <servlet-name>LogoutServlet</servlet-name>
     <url-pattern>/logout.me</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>MemberEnrollFormServlet</display-name>
+    <servlet-name>MemberEnrollFormServlet</servlet-name>
+    <servlet-class>com.mybatis.member.controller.MemberEnrollFormServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>MemberEnrollFormServlet</servlet-name>
+    <url-pattern>/enrollForm.me</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>IdCheckServlet</display-name>
+    <servlet-name>IdCheckServlet</servlet-name>
+    <servlet-class>com.mybatis.member.controller.IdCheckServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>IdCheckServlet</servlet-name>
+    <url-pattern>/idCheck.me</url-pattern>
+  </servlet-mapping>
 </web-app>

@@ -43,6 +43,12 @@
 	 	  from member
 	 	 where user_id = #{userId} and user_pwd = #{userPwd} and status = 'Y'
 	 </select>
+	 
+	 <select id="checkId" resultType="_int">
+	 	select count(*)
+	 	  from member
+	 	 where user_id = #{userId} 
+	 </select>
 </mapper>
 
 
