@@ -39,7 +39,6 @@ public class BoardDao {
 		
 		return (ArrayList)sqlSession.selectList("boardMapper.selectList", null, rowBounds);
 	}
-
 }
 
 

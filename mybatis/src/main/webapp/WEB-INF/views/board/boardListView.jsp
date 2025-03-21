@@ -14,6 +14,10 @@
 	#list-area tr, #list-area th, #list-area td {
 		border: 1px solid;
 	}
+	.outer a {
+		text-decoration: none;
+		color : black;
+	}
 </style>
 </head>
 <body>
@@ -39,7 +43,7 @@
 				<c:forEach var="b" items="${ list }">
 					<tr>
 						<td>${ b.boardNo }</td>
-						<td>${ b.boardTitle }</td>
+						<td><a href="detail.bo?bno=${ b.boardNo }">${ b.boardTitle }</a></td>
 						<td>${ b.boardWriter }</td>
 						<td>${ b.count }</td>
 						<td>${ b.createDate }</td>
@@ -49,7 +53,17 @@
 		</table>
 		
 		<div id="paging-area">
-		
+			<c:if test="${ pi.nowPage ne 1 }">
+				<a href="list.bo?nowPage=${ pi.nowPage-1 }">[이전]</a>
+			</c:if>
+			
+			<c:forEach var="p" begin="${ pi.startPage }" end="${ pi.endPage }">
+				<a href="list.bo?nowPage=${p}">[${p}]</a>
+			</c:forEach>
+			
+			<c:if test="${ pi.nowPage ne totalPage }">
+				<a href="list.bo?nowPage=${ pi.nowPage+1 }">[다음]</a>
+			</c:if>
 		</div>
 	</div>
 </body>
