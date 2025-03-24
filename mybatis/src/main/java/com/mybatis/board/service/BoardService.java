@@ -19,4 +19,5 @@ public interface BoardService {
 	
 	// 게시판 조건 검색
 	int selectSearchCount(HashMap<String, String> map);
+	ArrayList<Board> selectSearchList(HashMap<String, String> map, PageInfo pi);
 }

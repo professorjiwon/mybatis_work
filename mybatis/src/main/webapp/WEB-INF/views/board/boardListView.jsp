@@ -32,7 +32,7 @@
 					<option value="title">제목</option>
 					<option value="content">내용</option>
 				</select>
-				<input name="keyWord">
+				<input name="keyWord" value="${ keyWord }">
 				<input type="submit" value="검색">
 				<input type="hidden" name="nowPage" value="1">
 			</form>
@@ -64,15 +64,50 @@
 		
 		<div id="paging-area">
 			<c:if test="${ pi.nowPage ne 1 }">
-				<a href="list.bo?nowPage=${ pi.nowPage-1 }">[이전]</a>
+				<c:choose>
+					<c:when test="${ empty keyField }">
+						<a href="list.bo?nowPage=${ pi.nowPage-1 }">[이전]</a>
+					</c:when>
+					<c:otherwise>
+						<a href="search.bo?nowPage=${pi.nowPage-1}&keyField=${keyField}&keyWord=${keyWord}">[이전]</a>
+					</c:otherwise>
+				</c:choose>
 			</c:if>
 			
 			<c:forEach var="p" begin="${ pi.startPage }" end="${ pi.endPage }">
-				<a href="list.bo?nowPage=${p}">[${p}]</a>
+				<c:choose>
+					<c:when test="${ empty keyField }">
+						<c:choose>
+							<c:when test="${p eq pi.nowPage}">
+								<a href="list.bo?nowPage=${p}" style="color:hotpink;">[${p}]</a>
+							</c:when>
+							<c:otherwise>
+								<a href="list.bo?nowPage=${p}">[${p}]</a>
+							</c:otherwise>
+						</c:choose>
+					</c:when>
+					<c:otherwise>
+						<c:choose>
+							<c:when test="${p eq pi.nowPage}">
+								<a href="search.bo?nowPage=${p}&keyField=${keyField}&keyWord=${keyWord}" style="color:hotpink;">[${p}]</a>
+							</c:when>
+							<c:otherwise>
+								<a href="search.bo?nowPage=${p}&keyField=${keyField}&keyWord=${keyWord}">[${p}]</a>
+							</c:otherwise>
+						</c:choose>
+					</c:otherwise>
+				</c:choose>
 			</c:forEach>
 			
-			<c:if test="${ pi.nowPage ne totalPage }">
-				<a href="list.bo?nowPage=${ pi.nowPage+1 }">[다음]</a>
+			<c:if test="${ pi.nowPage ne pi.totalPage }">
+				<c:choose>
+					<c:when test="${ empty keyField }">
+						<a href="list.bo?nowPage=${ pi.nowPage+1 }">[다음]</a>
+					</c:when>
+					<c:otherwise>
+						<a href="search.bo?nowPage=${pi.nowPage+1}&keyField=${keyField}&keyWord=${keyWord}">[다음]</a>
+					</c:otherwise>
+				</c:choose>
 			</c:if>
 		</div>
 	</div>

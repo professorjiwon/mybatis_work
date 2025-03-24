@@ -54,7 +54,7 @@
 		 order by reply_no desc  
 	</select>
 	
-	<select id="selectSearchCount">
+	<select id="selectSearchCount" resultType="_int">
 		select count(*)
 		  from board
 		 where status = 'Y'
@@ -68,6 +68,25 @@
 		 	and board_content
 		 </if>
 		 like '%' || #{keyWord} || '%'    
+	</select>
+	
+	<select id="selectSearchList" resultMap="boardResultSet">
+		select *
+		  from board
+		 where status = 'Y'
+		 <choose>
+		 	<when test="keyField == 'writer'">
+		 		and board_writer
+		 	</when>
+		 	<when test="keyField == 'title'">
+		 		and board_title
+		 	</when>
+		 	<otherwise>
+		 		and board_content
+		 	</otherwise>
+		 </choose>
+		 like '%' || #{keyWord} || '%' 
+		 order by board_no desc   
 	</select>
 	
 </mapper>
