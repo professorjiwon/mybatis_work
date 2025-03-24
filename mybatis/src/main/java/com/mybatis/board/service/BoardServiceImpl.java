@@ -1,6 +1,7 @@
 package com.mybatis.board.service;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import org.apache.ibatis.session.SqlSession;
 
@@ -53,6 +54,14 @@ public class BoardServiceImpl implements BoardService {
 		ArrayList<Reply> list = bDao.selectReplyList(sqlSession, boardNo);
 		sqlSession.close();
 		return list;
+	}
+
+	@Override
+	public int selectSearchCount(HashMap<String, String> map) {
+		SqlSession sqlSession = Template.getSqlSession();
+		int result = bDao.selectSearchCount(sqlSession, map);
+		sqlSession.close();
+		return result;
 	}
 
 }

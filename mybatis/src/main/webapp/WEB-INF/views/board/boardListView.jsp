@@ -26,8 +26,18 @@
 		<h2>게 시 판</h2>
 		
 		<div id="search-area">
-		
+			<form action="search.bo">
+				<select name="keyField">
+					<option value="writer">작성자</option>
+					<option value="title">제목</option>
+					<option value="content">내용</option>
+				</select>
+				<input name="keyWord">
+				<input type="submit" value="검색">
+				<input type="hidden" name="nowPage" value="1">
+			</form>
 		</div>
+		<br>
 		
 		<table id="list-area" align="center">
 			<thead>

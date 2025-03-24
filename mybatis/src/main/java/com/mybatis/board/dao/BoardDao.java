@@ -1,6 +1,7 @@
 package com.mybatis.board.dao;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import org.apache.ibatis.session.RowBounds;
 import org.apache.ibatis.session.SqlSession;
@@ -51,6 +52,11 @@ public class BoardDao {
 
 	public ArrayList<Reply> selectReplyList(SqlSession sqlSession, int boardNo) {
 		return (ArrayList)sqlSession.selectList("boardMapper.selectReplyList", boardNo);
+	}
+
+	public int selectSearchCount(SqlSession sqlSession, HashMap<String, String> map) {
+		// TODO Auto-generated method stub
+		return 0;
 	}
 }
 
