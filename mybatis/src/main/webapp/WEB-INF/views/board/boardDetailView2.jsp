@@ -60,75 +60,45 @@
 					</tr>
 				</c:when>
 				<c:otherwise>
-					<form id="rFrm">
-						<tr>
-							<td>댓글 작성</td>
-							<td><textarea row="3" cols="50" name="content"></textarea></td>
-							<td><input type="button" value="댓글작성" id="replyInsert"></td>
-							<input type="hidden" name="bno" value="${b.boardNo}">
-							<input type="hidden" name="writer" value="${loginUser.userId}">
-						</tr>
-					</form>
+					<tr>
+						<td>댓글 작성</td>
+						<td><textarea row="3" cols="50" id="content"></textarea></td>
+						<td><input type="button" value="댓글작성" id="replyInsert"></td>
+					</tr>
 				</c:otherwise>
 			</c:choose>
 			<tr>
 				<td colspan="3" style="text-align:center">댓글 : ${reply.size()}</td>
 			</tr>
-			<tbody id="replyList">
-				<c:forEach var="r" items="${reply}">
-					<tr>
-						<td>${r.replyWriter}</td>
-						<td>${r.replyContent}</td>
-						<td>${r.createDate}</td>
-					</tr>
-				</c:forEach>
-			</tbody>
+			<c:forEach var="r" items="${reply}">
+				<tr>
+					<td>${r.replyWriter}</td>
+					<td>${r.replyContent}</td>
+					<td>${r.createDate}</td>
+				</tr>
+			</c:forEach>
 		</table>
 	</div>
 	
 	<script>
 		$(() => {
 			$('#replyInsert').click(function() {
-				// serialize() : 폼안의 input, select, textarea등의 value의 값을 간단하게 표준 url인코딩 형태 문자열로 만들어줌
-				// content=내용&id=값&writer=값
-				let rdata = $('#rFrm').serialize();
 				$.ajax({
-					url : 'rinsert.bo',
-					data : rdata,
+					url : 'detail.bo',
+					data : {
+						bno : ${b.boardNo},
+						content : $('#content').val(),
+						writer : "${loginUser.userName}"
+					},
+					type: 'post',
 					success: function(result) {
-						console.log(result);
-						if(result > 0) {
-							replyList();
-						}
+						console.log(result)
 					},
 					error: function() {
 						console.log("댓글달기 통신 실패");
 					}
 				})
 			})
-			
-			function replyList() {
-				$.ajax ({
-					url : "detail.bo",
-					data : {bno : ${b.boardNo}},
-					type: "post",
-					success : function(result) {
-						console.log(result);
-						let list = "";
-						$.each(result, function(index, value) {
-							list += "<tr>"
-									+ "<td>"+ value.replyWriter +"</td>"
-									+ "<td>"+ value.replyContent + "</td>"
-									+ "<td>"+ value.createDate + "</td>"
-								  + "</tr>";
-						})
-						$('#replyList').html(list);
-					},
-					error : function() {
-						console.log('댓글등록 후 리스트 목록 통신 실패');
-					}
-				})
-			}
 		})
 	</script>
 </body>

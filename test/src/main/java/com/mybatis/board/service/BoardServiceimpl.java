@@ -11,7 +11,7 @@ import com.mybatis.board.vo.Reply;
 import com.mybatis.common.template.Template;
 import com.mybatis.common.vo.PageInfo;
 
-public class BoardServiceImpl implements BoardService {
+public class BoardServiceimpl implements BoardService {
 	private BoardDao bDao = new BoardDao();
 	
 	public int selectTotalRecord() {
@@ -33,7 +33,7 @@ public class BoardServiceImpl implements BoardService {
 	public int increaseCount(int boardNo) {
 		SqlSession sqlSession = Template.getSqlSession();
 		int result = bDao.increaseCount(sqlSession, boardNo);
-		if(result > 0) {
+		if(result >0) {
 			sqlSession.commit();
 		}
 		sqlSession.close();
@@ -53,15 +53,15 @@ public class BoardServiceImpl implements BoardService {
 		SqlSession sqlSession = Template.getSqlSession();
 		ArrayList<Reply> list = bDao.selectReplyList(sqlSession, boardNo);
 		sqlSession.close();
-		return list;
-	}
+		return list;	
+		}
 
 	@Override
 	public int selectSearchCount(HashMap<String, String> map) {
 		SqlSession sqlSession = Template.getSqlSession();
 		int result = bDao.selectSearchCount(sqlSession, map);
 		sqlSession.close();
-		return result;
+		return result;	
 	}
 
 	@Override
@@ -69,18 +69,7 @@ public class BoardServiceImpl implements BoardService {
 		SqlSession sqlSession = Template.getSqlSession();
 		ArrayList<Board> list = bDao.selectSearchList(sqlSession, map, pi);
 		sqlSession.close();
-		return list;
-	}
-
-	@Override
-	public int replyInsert(Reply r) {
-		SqlSession sqlSession = Template.getSqlSession();
-		int result = bDao.replyInsert(sqlSession, r);
-		if(result > 0) {
-			sqlSession.commit();
-		}
-		sqlSession.close();
-		return result;
+		return list;	
 	}
 
 }

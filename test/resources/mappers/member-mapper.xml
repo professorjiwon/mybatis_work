@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+ <mapper namespace="memberMapper">
+ 	<!-- namespace : 해당 mapper의 별칭  -->
+ 	<!--  
+ 		*DML문일 때
+ 		<insert|update|delete id="식별자" [parameterType="전달받을 자바타입(풀클래스명)|별칭"]>
+ 		 => 처리된 행수(int)가 반환되기 때문에 resultType 또는 resultMap에 대한 속성은 안써도됨
+ 		 
+ 		 *select문일 때
+ 		 <select id="식별자" [parameterType="전달받을 자바타입(풀클래스명)|별칭"]>
+ 		 	resultType = "조호된결과를 반환하고자하는 자바타입" | resultMap = "조회된 결과를 매핑할 resultMap의 id"
+ 		 </select>
+ 		 
+ 		 *resultMap : 마이바티스 핵심 기술 중 하나
+ 		  Resultset으로부터 조회된 컬럼값 하나씩 가져와서 내가 지정한 bean객체에 매핑을 해주는 역할 수행
+ 		  
+ 		  <resultMap id="식별자" type="bean객체의 풀클래스명 | 별칭">
+ 		  	<result column="조회결과의 DB컬럼명" property="bean객체의 필드명"/>
+ 		  	<result column="조회결과의 DB컬럼명" property="bean객체의 필드명"/>
+ 		  	<result column="조회결과의 DB컬럼명" property="bean객체의 필드명"/>
+ 		  </resultMap>
+ 		  
+ 	-->
+ 	<resultMap type="com.mybatis.member.vo.Member" id="memberResultSet">
+ 		<result column="user_id" property="userId"/>
+ 		<result column="user_pwd" property="userPwd"/>
+ 		<result column="user_name" property="userName"/>
+ 		<result column="email" property="email"/>
+ 		<result column="birthday" property="birthday"/>
+ 		<result column="gender" property="gender"/>
+ 		<result column="phone" property="phone"/>
+ 		<result column="address" property="address"/>
+ 		<result column="enroll_date" property="enrollDate"/>
+ 		<result column="modify_date" property="modifyDate"/>
+ 		<result column="status" property="status"/>
+ 		
+	</resultMap>
+ 	
+ 	<select id="LoginMember" resultMap="memberResultSet" parameterType="com.mybatis.member.vo.Member">
+ 		select*
+ 		from member
+ 		where user_id = #{userId} and user_pwd = #{userPwd} and status = 'Y'
+ 	</select>
+ 	
+ 	<select id="checkId" resultType="_int"> 
+ 		select count(*)
+ 		from member
+ 		where user_id = #{userId}
+ 	</select>
+ 	
+ 	<insert id="insertMember">
+ 		insert into member 
+ 		values(#{userId}, #{userPwd}, #{userName}, #{email}, #{birthday}, #{gender}, #{phone}, #{address}, default, default, default)
+ 	</insert>
+</mapper>
