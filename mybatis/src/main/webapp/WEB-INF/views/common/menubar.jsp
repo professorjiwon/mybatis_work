@@ -46,7 +46,9 @@
 						<tr>
 							<td>아이디</td>
 							<td><input name="userId" required></td>
-							<td rowspan="2"><input type="submit" value="로그인" style="height:46px"></td>
+							<td rowspan="2">
+								<input type="submit" value="로그인" style="height:46px">
+							</td>
 						</tr>
 						<tr>
 							<td>비밀번호</td>

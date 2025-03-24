@@ -30,20 +30,29 @@ public class BoardServiceImpl implements BoardService {
 
 	@Override
 	public int increaseCount(int boardNo) {
-		// TODO Auto-generated method stub
-		return 0;
+		SqlSession sqlSession = Template.getSqlSession();
+		int result = bDao.increaseCount(sqlSession, boardNo);
+		if(result > 0) {
+			sqlSession.commit();
+		}
+		sqlSession.close();
+		return result;
 	}
 
 	@Override
 	public Board selectBoard(int boardNo) {
-		// TODO Auto-generated method stub
-		return null;
+		SqlSession sqlSession = Template.getSqlSession();
+		Board b = bDao.selectBoard(sqlSession, boardNo);
+		sqlSession.close();
+		return b;
 	}
 
 	@Override
 	public ArrayList<Reply> selectReplyList(int boardNo) {
-		// TODO Auto-generated method stub
-		return null;
+		SqlSession sqlSession = Template.getSqlSession();
+		ArrayList<Reply> list = bDao.selectReplyList(sqlSession, boardNo);
+		sqlSession.close();
+		return list;
 	}
 
 }

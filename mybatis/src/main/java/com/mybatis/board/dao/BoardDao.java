@@ -6,6 +6,7 @@ import org.apache.ibatis.session.RowBounds;
 import org.apache.ibatis.session.SqlSession;
 
 import com.mybatis.board.vo.Board;
+import com.mybatis.board.vo.Reply;
 import com.mybatis.common.vo.PageInfo;
 
 public class BoardDao {
@@ -38,6 +39,18 @@ public class BoardDao {
 		*/
 		
 		return (ArrayList)sqlSession.selectList("boardMapper.selectList", null, rowBounds);
+	}
+
+	public int increaseCount(SqlSession sqlSession, int boardNo) {		
+		return sqlSession.update("boardMapper.increaseCount", boardNo);
+	}
+
+	public Board selectBoard(SqlSession sqlSession, int boardNo) {
+		return sqlSession.selectOne("boardMapper.selectBoard", boardNo);
+	}
+
+	public ArrayList<Reply> selectReplyList(SqlSession sqlSession, int boardNo) {
+		return (ArrayList)sqlSession.selectList("boardMapper.selectReplyList", boardNo);
 	}
 }
 
